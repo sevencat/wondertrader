@@ -3,8 +3,8 @@
 #ifndef FMT_HEADER_ONLY
 #define FMT_HEADER_ONLY
 #endif
-#include <spdlog/fmt/bundled/format.h>
-
+#define FMT_UNICODE 0
+#include <spdlog/fmt/fmt.h>
 namespace fmtutil
 {
 	template<typename... Args>

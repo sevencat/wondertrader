@@ -7,7 +7,7 @@
 #include "../Includes/WTSVariant.hpp"
 #include <rapidjson/document.h>
 namespace rj = rapidjson;
-
+#undef GetObject
 
 bool json_to_variant(const rj::Value& root, WTSVariant* params)
 {

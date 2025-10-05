@@ -25,7 +25,7 @@ namespace rj = rapidjson;
 #include "../Share/CodeHelper.hpp"
 
 #include "../WTSTools/WTSLogger.h"
-
+#undef GetObject
 const char* CMP_ALG_NAMES[] =
 {
 	"＝",

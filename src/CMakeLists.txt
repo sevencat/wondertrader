@@ -13,6 +13,11 @@ MESSAGE(STATUS "Generator is ${CMAKE_GENERATOR}")
 
 IF (MSVC)
 	ADD_DEFINITIONS (-D_CRT_SECURE_NO_WARNINGS)
+	# in yyvals_core.h 这应该是个bug,没法子
+	##ifndef _HAS_STD_BYTE
+	##define _HAS_STD_BYTE _HAS_CXX17 // TRANSITION, OS-14273702
+	##endif // !defined(_HAS_STD_BYTE)
+	ADD_DEFINITIONS(-D_HAS_STD_BYTE=0)
 	IF(CMAKE_CL_64)
 		SET(INCS $ENV{MyDepends141}/include)
 		SET(LNKS $ENV{MyDepends141}/lib/x64)

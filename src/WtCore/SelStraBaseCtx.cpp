@@ -25,7 +25,7 @@
 #include "../WTSTools/WTSLogger.h"
 
 namespace rj = rapidjson;
-
+#undef GetObject
 inline uint32_t makeSelCtxId()
 {
 	static std::atomic<uint32_t> _auto_context_id{ 3000 };

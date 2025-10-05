@@ -8,6 +8,9 @@ SET(CMAKE_CXX_STANDARD 17)
 
 SET(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/build_${PLATFORM}/${CMAKE_BUILD_TYPE}/bin/Loader)
 
+find_package(Boost REQUIRED COMPONENTS filesystem)
+find_package(Iconv REQUIRED)
+
 #7. 添加源码
 SET(SRC  
 	${PROJECT_SOURCE_DIR}/CTPLoader.cpp
@@ -19,21 +22,15 @@ INCLUDE_DIRECTORIES(${INCS})
 LINK_DIRECTORIES(${LNKS})
 
 SET(LIBS
-	boost_filesystem
     WTSUtils
-	dl
 )
 
-IF(WIN32)
-LIST(APPEND LIBS iconv)
-ENDIF()
+
 
 #9. 生成可执行文件
 ADD_LIBRARY(CTPLoader SHARED ${SRC})
-IF (MSVC)
-ELSE (GNUCC)
-	TARGET_LINK_LIBRARIES(CTPLoader ${LIBS})
-ENDIF ()
+TARGET_LINK_LIBRARIES(CTPLoader PRIVATE ${LIBS})
+target_link_libraries(CTPLoader PRIVATE Boost::filesystem Iconv::Iconv)
 
 IF (MSVC)
 ELSE (GNUCC)
